@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rex Belli R. Batenga | Portfolio</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-base: #181b20;          
+            --bg-card: rgba(30, 35, 45, 0.88); 
+            --bg-card-hover: rgba(40, 47, 60, 0.95); 
+            --primary: #f1f5f9;         
+            --accent: #d4a373;          
+            --accent-bright: #f3e5ab;
+            --accent-hover: #e5b88a;    
+            --accent-glow: rgba(212, 163, 115, 0.35);
+            --gold-gradient: linear-gradient(180deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
+            --text-dark: #cbd5e1;       
+            --text-muted: #94a3b8;      
+            --border-color: rgba(255, 255, 255, 0.08); 
+            --border-accent: rgba(212, 163, 115, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            color: var(--text-dark);
+            background-color: var(--bg-base);
+            /* Soft side gold ambient glow in the background without rigid bars */
+            background-image: 
+                linear-gradient(90deg, rgba(212, 163, 115, 0.18) 0%, rgba(243, 229, 171, 0.08) 12%, transparent 25%, transparent 75%, rgba(243, 229, 171, 0.08) 88%, rgba(212, 163, 115, 0.18) 100%),
+                radial-gradient(circle at 50% 0%, rgba(212, 163, 115, 0.08), transparent 60%);
+            line-height: 1.65;
+            padding-bottom: 4rem;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* CORNER BRACKETS ONLY (Vertical lines removed) */
+        .side-frame {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 36px;
+            z-index: 99;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 0;
+        }
+
+        .side-frame.left {
+            left: 12px;
+        }
+
+        .side-frame.right {
+            right: 12px;
+        }
+
+        /* Gold Corner Brackets */
+        .corner-bracket {
+            width: 20px;
+            height: 20px;
+            position: relative;
+        }
+
+        .corner-bracket::before, .corner-bracket::after {
+            content: '';
+            position: absolute;
+            background: var(--gold-gradient);
+            box-shadow: 0 0 8px rgba(243, 229, 171, 0.8);
+        }
+
+        /* Left Top Bracket */
+        .side-frame.left .bracket-top::before { top: 0; left: 0; width: 100%; height: 3px; }
+        .side-frame.left .bracket-top::after { top: 0; left: 0; width: 3px; height: 100%; }
+
+        /* Left Bottom Bracket */
+        .side-frame.left .bracket-bottom::before { bottom: 0; left: 0; width: 100%; height: 3px; }
+        .side-frame.left .bracket-bottom::after { bottom: 0; left: 0; width: 3px; height: 100%; }
+
+        /* Right Top Bracket */
+        .side-frame.right .bracket-top::before { top: 0; right: 0; width: 100%; height: 3px; }
+        .side-frame.right .bracket-top::after { top: 0; right: 0; width: 3px; height: 100%; }
+
+        /* Right Bottom Bracket */
+        .side-frame.right .bracket-bottom::before { bottom: 0; right: 0; width: 100%; height: 3px; }
+        .side-frame.right .bracket-bottom::after { bottom: 0; right: 0; width: 3px; height: 100%; }
+
+        /* HEADER STYLING */
+        header {
+            position: relative;
+            background: rgba(22, 26, 33, 0.88);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2.5rem;
+            text-align: center;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cover-photo {
+            width: 100%;
+            height: 240px;
+            background: linear-gradient(180deg, rgba(24, 27, 32, 0.2) 0%, rgba(24, 27, 32, 0.95) 100%), 
+                        url('jmcbackground.jpg') center/cover no-repeat;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            margin-top: -80px; 
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-img-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-img-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 165px;
+            height: 165px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .profile-img {
+            position: relative;
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid transparent;
+            background-image: linear-gradient(var(--bg-base), var(--bg-base)), var(--gold-gradient);
+            background-origin: border-box;
+            background-clip: content-box, border-box;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
+            margin-bottom: 1.2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6), 0 0 25px var(--accent-glow);
+        }
+
+        /* GRADIENT NAME TEXT */
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 30%, var(--accent-bright) 70%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* AESTHETIC CORMORANT GARAMOND SUBTITLE */
+        .subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.35rem; 
+            color: #e2c097;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.4;
+            letter-spacing: 0.8px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle a {
+            font-family: 'Cormorant Garamond', serif;
+            color: #e2c097;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            transition: color 0.3s ease;
+        }
+
+        .subtitle a:hover {
+            color: #ffffff;
+        }
+
+        .meta-info {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem 1.5rem;
+        }
+
+        .meta-info span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .meta-info i {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            color: var(--primary);
+            text-decoration: none;
+            padding: 8px 20px;
+            border: 1px solid var(--border-accent);
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: rgba(30, 35, 45, 0.8);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .social-links a i {
+            font-size: 0.95rem;
+            color: var(--accent);
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--gold-gradient);
+            color: #181b20;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px var(--accent-glow);
+        }
+
+        .social-links a:hover i {
+            color: #181b20;
+        }
+
+        /* GRID LAYOUT & TILE STYLING */
+        main {
+            max-width: 760px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .tiles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+        }
+
+        .tile-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.4s ease, 
+                        box-shadow 0.4s ease,
+                        background 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tile-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), 0 0 20px var(--accent-glow);
+        }
+
+        .tile-card.expanded {
+            grid-column: 1 / -1; 
+            border-color: var(--accent);
+            background: rgba(30, 35, 45, 0.96);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 25px var(--accent-glow);
+            transform: scale(1.005);
+        }
+
+        .tile-header {
+            padding: 1.4rem 1.6rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background 0.3s ease;
+        }
+
+        .tile-header:hover {
+            background-color: var(--bg-card-hover);
+        }
+
+        .tile-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.3px;
+        }
+
+        .tile-chevron {
+            font-size: 1.3rem;
+            color: var(--accent);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-block;
+            line-height: 1;
+        }
+
+        .tile-card.expanded .tile-chevron {
+            transform: rotate(90deg);
+        }
+
+        .tile-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            opacity: 0;
+            background: rgba(22, 26, 33, 0.5);
+        }
+
+        .tile-card.expanded .tile-body {
+            opacity: 1;
+        }
+
+        .tile-inner {
+            padding: 1.6rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .bio-text {
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .category-header {
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin: 1.5rem 0 1rem 0;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid var(--border-color);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        .category-header:first-child {
+            margin-top: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--border-accent);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #181b20;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 6px var(--accent-glow);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-flex {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1.2rem;
+        }
+
+        .timeline-info {
+            flex: 1;
+        }
+
+        .timeline-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        .timeline-company {
+            font-style: italic;
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .timeline-date {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+
+        .thumb-group {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-top: 0.6rem;
+        }
+
+        .edu-thumb {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border-accent);
+            cursor: pointer;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .cert-thumb {
+            width: 125px;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-accent);
+            cursor: pointer;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .edu-thumb:hover, .cert-thumb:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .badge-list {
+            list-style: none;
+            margin-top: 0.6rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .badge-pill {
+            background-color: rgba(212, 163, 115, 0.1);
+            border: 1px solid var(--border-accent);
+            color: var(--accent-hover);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .cert-link {
+            font-size: 0.85rem;
+            color: var(--accent);
+            text-decoration: none;
+            margin-top: 0.3rem;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .cert-instruction {
+            font-size: 0.82rem;
+            color: var(--accent-hover);
+            font-style: italic;
+            margin-top: 0.25rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+
+        .tag {
+            background-color: rgba(255, 255, 255, 0.04);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border: 1px solid var(--border-color);
+            transition: all 0.25s ease;
+        }
+
+        .tag:hover {
+            border-color: var(--accent);
+            background: rgba(212, 163, 115, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .tag-interest {
+            background-color: rgba(212, 163, 115, 0.08);
+            border-color: rgba(212, 163, 115, 0.25);
+            color: var(--accent-hover);
+        }
+
+        /* LIGHTBOX MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 18, 22, 0.85);
+            backdrop-filter: blur(10px);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 12px;
+            border: 2px solid var(--accent);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #ffffff;
+            font-size: 35px;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+        }
+
+        @media (max-width: 600px) {
+            .side-frame {
+                width: 20px;
+            }
+            .side-frame.left {
+                left: 4px;
+            }
+            .side-frame.right {
+                right: 4px;
+            }
+            main {
+                padding: 0 1rem;
+            }
+            .tiles-grid {
+                grid-template-columns: 1fr;
+            }
+            .timeline-flex {
+                flex-direction: column;
+            }
+            .edu-thumb {
+                width: 100%;
+                height: 180px;
+            }
+            .subtitle {
+                font-size: 1.15rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- GOLD CORNER BRACKETS ONLY (LEFT) -->
+    <div class="side-frame left">
+        <div class="corner-bracket bracket-top"></div>
+        <div class="corner-bracket bracket-bottom"></div>
+    </div>
+
+    <!-- GOLD CORNER BRACKETS ONLY (RIGHT) -->
+    <div class="side-frame right">
+        <div class="corner-bracket bracket-top"></div>
+        <div class="corner-bracket bracket-bottom"></div>
+    </div>
+
+    <header>
+        <div class="cover-photo"></div>
+        <div class="profile-container">
+            <div class="profile-img-wrapper">
+                <img src="rex-formal-pic.jpg" alt="Rex Belli R. Batenga" class="profile-img">
+            </div>
+            <h1>Rex Belli R. Batenga</h1>
+            
+            <!-- AESTHETIC CORMORANT GARAMOND SUBTITLE -->
+            <div class="subtitle">
+                International Relations Officer<br>
+                Internationalization and Global Engagement Office<br>
+                <a href="https://jmc.edu.ph/" target="_blank">Jose Maria College Foundation, Inc.</a>
+            </div>
+            
+            <div class="meta-info">
+                <span><i class="fa-solid fa-location-dot"></i> Davao City, Philippines</span>
+                <span><i class="fa-solid fa-envelope"></i> rex.batenga@jmc.edu.ph</span>
+                <span><i class="fa-solid fa-phone"></i> +63 927 110 2152</span>
+            </div>
+
+            <!-- SOCIAL LINKS WITH LOGOS -->
+            <div class="social-links">
+                <a href="https://www.facebook.com/rex.renaciabatenga/" target="_blank">
+                    <i class="fa-brands fa-facebook-f"></i> Facebook
+                </a>
+                <a href="https://www.instagram.com/rex_renacia_/" target="_blank">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
+                <a href="https://www.linkedin.com/in/rex-belli-batenga-5786563a3/" target="_blank">
+                    <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+                </a>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=rex.batenga@jmc.edu.ph" target="_blank">
+                    <i class="fa-solid fa-envelope"></i> Gmail
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="tiles-grid">
+            
+            <!-- TILE 1: ABOUT ME -->
+            <div class="tile-card">
+                <div class="tile-header" onclick="toggleTile(this)">
+                    <span class="tile-title">About Me</span>
+                    <span class="tile-chevron">›</span>
+                </div>
+                <div class="tile-body">
+                    <div class="tile-inner">
+                        <p class="bio-text">
+                            Hi, I'm <strong>Rex Belli R. Batenga</strong>, currently serving as the <strong>International Relations Officer / Linkage Officer</strong> of the Jose Maria College Foundation, Inc. Internationalization Office. With a robust track record in academic research and institutional leadership, I bridge the gap between rigorous operational discipline and strategic partnerships. I am highly passionate about expanding institutional networks, advancing research frontiers, and continuously adapting to fast-paced environments. With a background blending customer care, technical assistance, and leadership, I bring a collaborative, detail-oriented approach to driving global connections and local impact.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TILE 2: EDUCATION -->
+            <div class="tile-card">
+                <div class="tile-header" onclick="toggleTile(this)">
+                    <span class="tile-title">Education</span>
+                    <span class="tile-chevron">›</span>
+                </div>
+                <div class="tile-body">
+                    <div class="tile-inner">
+                        <div class="timeline-item">
+                            <div class="timeline-flex">
+                                <div class="timeline-info">
+                                    <div class="timeline-title">Bachelor of Science in Criminology</div>
+                                    <div class="timeline-company">Jose Maria College Foundation Inc.</div>
+                                    <div class="timeline-date">Graduated: June 27, 2025 (Batch 2025)</div>
+                                    <ul class="badge-list">
+                                        <li class="badge-pill">Dean's Lister</li>
+                                        <li class="badge-pill">Best Intern Award</li>
+                                        <li class="badge-pill">Meritorious Research Award</li>
+                                        <li class="badge-pill">Outstanding Research Award</li>
+                                        <li class="badge-pill">Sports Achiever of the Year</li>
+                                    </ul>
+                                </div>
+                                <div class="img-container">
+                                    <img src="rex.jpg" alt="Graduation Photo" class="edu-thumb" onclick="openModal(this.src)">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">Senior High School – STEM Strand</div>
+                            <div class="timeline-company">Science, Technology, Engineering, and Mathematics</div>
+                            <div class="timeline-date">Graduated: 2021</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TILE 3: WORK BACKGROUND -->
+            <div class="tile-card">
+                <div class="tile-header" onclick="toggleTile(this)">
+                    <span class="tile-title">Work Background</span>
+                    <span class="tile-chevron">›</span>
+                </div>
+                <div class="tile-body">
+                    <div class="tile-inner">
+                        <div class="timeline-item">
+                            <div class="timeline-title">International Relations Officer</div>
+                            <div class="timeline-company">Jose Maria College Foundation, Inc. – Internationalization and Global Engagement Office</div>
+                            <div class="timeline-date">June 1, 2026 - Present</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Technical Support</div>
+                            <div class="timeline-company">Google</div>
+                            <div class="timeline-date">08/2025 - 02/2026</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Virtual Assistant / Sales Representative</div>
+                            <div class="timeline-date">02/2026 - 03/2026</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Fast Food Crew</div>
+                            <div class="timeline-company">McDonald's & Jollibee</div>
+                            <div class="timeline-date">01/2021 - 05/2024</div>
+                            <ul class="badge-list">
+                                <li class="badge-pill">Rising Star (Jan 2024)</li>
+                                <li class="badge-pill">Standout Performer (Jan 2024)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TILE 4: CERTIFICATES -->
+            <div class="tile-card">
+                <div class="tile-header" onclick="toggleTile(this)">
+                    <span class="tile-title">Certificates</span>
+                    <span class="tile-chevron">›</span>
+                </div>
+                <div class="tile-body">
+                    <div class="tile-inner">
+                        
+                        <div class="category-header">International Certificates</div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">Rising Innovator Award – ASEAN Future Challenge 2026 (AI Track)</div>
+                            <div class="timeline-company">myHCI-UX | Project: SafeRelay</div>
+                            <div class="timeline-date">August 17, 2026</div>
+                            <a href="https://rexbatenga.github.io/prototypeee/" target="_blank" class="cert-link">Prototype: https://rexbatenga.github.io/prototypeee/</a>
+                            <div class="cert-instruction">Note: Click the character (tung tung sahur) to access the prototype.</div>
+                            <div class="thumb-group">
+                                <img src="Safe Relay.jpg" alt="Safe Relay Certificate" class="cert-thumb" onclick="openModal(this.src)">
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">International Seminar: Strengthening Child Protection Systems to Prevent Violence Against Children</div>
+                            <div class="timeline-company">Riau Regional Leadership of 'Aisyiyah (Pekanbaru)</div>
+                            <div class="timeline-date">June 13, 2026</div>
+                            <div class="thumb-group">
+                                <img src="Strengthening Child Protection System.jpg" alt="Child Protection System Certificate" class="cert-thumb" onclick="openModal(this.src)">
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">Fun Bahasa Indonesia and Cultural Course (FBICC) 2026 - Batch 2</div>
+                            <div class="timeline-company">Institut Teknologi Sepuluh Nopember (ITS) Surabaya, Indonesia</div>
+                            <div class="timeline-date">May 12 – June 25, 2026</div>
+                            <div class="thumb-group">
+                                <img src="FBICC Cert.jpg" alt="FBICC Certificate" class="cert-thumb" onclick="openModal(this.src)">
+                            </div>
+                        </div>
+
+                        <div class="category-header">Local & Institutional Certificates</div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">JMCFI Internationalization Orientation & Workshop Program</div>
+                            <div class="timeline-company">Jose Maria College Foundation, Inc.</div>
+                            <div class="timeline-date">July 29, 2026</div>
+                            <div class="thumb-group">
+                                <img src="IZN Workshop JMC.jpg" alt="IZN Workshop Certificate" class="cert-thumb" onclick="openModal(this.src)">
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">Project PIVOT: From Connection to Collaboration (Featuring SeeMeSol Inc.)</div>
+                            <div class="timeline-company">Commission on Higher Education (CHED) - IAS</div>
+                            <div class="timeline-date">June 19, 2026</div>
+                            <div class="thumb-group">
+                                <img src="SeeMeSol.jpg" alt="SeeMeSol Certificate" class="cert-thumb" onclick="openModal(this.src)">
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">Project PIVOT: From Connection to Collaboration (Featuring TECO & INTACT Base Office-PH)</div>
+                            <div class="timeline-company">Commission on Higher Education (CHED) - IAS</div>
+                            <div class="timeline-date">June 4, 2026</div>
+                            <div class="thumb-group">
+                                <img src="TECO.jpg" alt="TECO Certificate" class="cert-thumb" onclick="openModal(this.src)">
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-title">Third Best Paper (Social Sciences) – 5th Students' Research Congress 2025</div>
+                            <div class="timeline-company">Jose Maria College Foundation, Inc.</div>
+                            <div class="timeline-date">April 23–24, 2025</div>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">
+                                Paper: <em>"Perception of College Students Towards Domestic Violence in the Media in a Selected Higher Education Institution"</em>
+                            </p>
+                            <div class="thumb-group">
+                                <img src="SRC2 3rd Best Paper.jpg" alt="SRC Certificate" class="cert-thumb" onclick="openModal(this.src)">
+                                <img src="3rd best presenter.jpg" alt="Third Best Paper Presenter Banner" class="cert-thumb" onclick="openModal(this.src)">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- TILE 5: SKILLS -->
+            <div class="tile-card">
+                <div class="tile-header" onclick="toggleTile(this)">
+                    <span class="tile-title">Skills</span>
+                    <span class="tile-chevron">›</span>
+                </div>
+                <div class="tile-body">
+                    <div class="tile-inner">
+                        <div class="skill-tags">
+                            <span class="tag">Proficient with Technology</span>
+                            <span class="tag">Tech Troubleshooting</span>
+                            <span class="tag">Hospitality</span>
+                            <span class="tag">Video and Picture Editing</span>
+                            <span class="tag">Writing</span>
+                            <span class="tag">Research Coordination</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TILE 6: ORGANIZATIONS & LEADERSHIP -->
+            <div class="tile-card">
+                <div class="tile-header" onclick="toggleTile(this)">
+                    <span class="tile-title">Organizations & Leadership</span>
+                    <span class="tile-chevron">›</span>
+                </div>
+                <div class="tile-body">
+                    <div class="tile-inner">
+                        <div class="timeline-item">
+                            <div class="timeline-title">Chief Intern / MATALAKBAN Batch President 2025</div>
+                            <div class="timeline-company">JMCFI College of Criminal Justice Education</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Sergeant (SGT) – Standby Army Reserve</div>
+                            <div class="timeline-company">Army Reserve Command (ARESCOM)</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Former Corps Commander (AY 2023–2024)</div>
+                            <div class="timeline-company">JMC ROTC Unit (08/2021 - 05/2024)</div>
+                            <ul class="badge-list">
+                                <li class="badge-pill">Superior ROTC Officer Award</li>
+                                <li class="badge-pill">Distinguished Service in ROTC Award</li>
+                                <li class="badge-pill">Loyalty Award</li>
+                                <li class="badge-pill">Leadership Award</li>
+                            </ul>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">King's Sword Martial Arts</div>
+                            <div class="timeline-company">Practitioner / Coach</div>
+                            <ul class="badge-list">
+                                <li class="badge-pill">Muay Thai Rising Star</li>
+                                <li class="badge-pill">Multi-Medalist in fighting sports</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TILE 7: PERSONAL DETAILS & INTERESTS -->
+            <div class="tile-card">
+                <div class="tile-header" onclick="toggleTile(this)">
+                    <span class="tile-title">Personal Details & Interests</span>
+                    <span class="tile-chevron">›</span>
+                </div>
+                <div class="tile-body">
+                    <div class="tile-inner">
+                        <p style="font-weight: 700; margin-bottom: 0.3rem; color: var(--accent); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">Languages Spoken:</p>
+                        <div class="skill-tags" style="margin-bottom: 1.5rem;">
+                            <span class="tag">Cebuano (Native)</span>
+                            <span class="tag">Filipino (Native)</span>
+                            <span class="tag">English (Professional)</span>
+                        </div>
+
+                        <p style="font-weight: 700; margin-bottom: 0.3rem; color: var(--accent); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">Hobbies & Interests:</p>
+                        <div class="skill-tags">
+                            <span class="tag tag-interest">Learning Languages</span>
+                            <span class="tag tag-interest">Reading</span>
+                            <span class="tag tag-interest">Photography</span>
+                            <span class="tag tag-interest">Videography Editing</span>
+                            <span class="tag tag-interest">Sports</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- LIGHTBOX MODAL -->
+    <div id="imgModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Rex Belli R. Batenga. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleTile(headerElement) {
+            const card = headerElement.parentElement;
+            const body = card.querySelector('.tile-body');
+
+            card.classList.toggle('expanded');
+
+            if (card.classList.contains('expanded')) {
+                body.style.maxHeight = (body.scrollHeight + 60) + "px";
+            } else {
+                body.style.maxHeight = "0px";
+            }
+        }
+
+        function openModal(src) {
+            const modal = document.getElementById('imgModal');
+            modal.style.display = "flex";
+            document.getElementById('modalImg').src = src;
+        }
+
+        function closeModal() {
+            document.getElementById('imgModal').style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
