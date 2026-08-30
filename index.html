@@ -1,10 +1,10 @@
+Here is your updated HTML code with the new Writings tile added to the grid. It follows the exact same style, animations, and functionality as the other tiles, featuring a button inside that links directly to Library.html.
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rex Belli R. Batenga | Portfolio</title>
-    <!-- Google Fonts & Font Awesome Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -474,6 +474,40 @@
             color: var(--accent-hover);
         }
 
+        /* LIBRARY LINK BUTTON */
+        .library-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--primary);
+            text-decoration: none;
+            padding: 10px 24px;
+            border: 1px solid var(--border-accent);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: rgba(30, 35, 45, 0.8);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-top: 0.5rem;
+        }
+
+        .library-btn i {
+            color: var(--accent);
+            transition: color 0.3s ease;
+        }
+
+        .library-btn:hover {
+            background: var(--gold-gradient);
+            color: #181b20;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px var(--accent-glow);
+        }
+
+        .library-btn:hover i {
+            color: #181b20;
+        }
+
         /* LIGHTBOX MODAL */
         .modal {
             display: none;
@@ -542,7 +576,6 @@
             </div>
             <h1>Rex Belli R. Batenga</h1>
             
-            <!-- AESTHETIC CORMORANT GARAMOND SUBTITLE -->
             <div class="subtitle">
                 International Relations Officer<br>
                 Internationalization and Global Engagement Office<br>
@@ -555,7 +588,6 @@
                 <span><i class="fa-solid fa-phone"></i> +63 927 110 2152</span>
             </div>
 
-            <!-- SOCIAL LINKS WITH LOGOS -->
             <div class="social-links">
                 <a href="https://www.facebook.com/rex.renaciabatenga/" target="_blank">
                     <i class="fa-brands fa-facebook-f"></i> Facebook
@@ -576,7 +608,6 @@
     <main>
         <div class="tiles-grid">
             
-            <!-- TILE 1: ABOUT ME -->
             <div class="tile-card">
                 <div class="tile-header" onclick="toggleTile(this)">
                     <span class="tile-title">About Me</span>
@@ -591,7 +622,6 @@
                 </div>
             </div>
 
-            <!-- TILE 2: EDUCATION -->
             <div class="tile-card">
                 <div class="tile-header" onclick="toggleTile(this)">
                     <span class="tile-title">Education</span>
@@ -628,7 +658,6 @@
                 </div>
             </div>
 
-            <!-- TILE 3: WORK BACKGROUND -->
             <div class="tile-card">
                 <div class="tile-header" onclick="toggleTile(this)">
                     <span class="tile-title">Work Background</span>
@@ -663,7 +692,6 @@
                 </div>
             </div>
 
-            <!-- TILE 4: CERTIFICATES -->
             <div class="tile-card">
                 <div class="tile-header" onclick="toggleTile(this)">
                     <span class="tile-title">Certificates</span>
@@ -749,7 +777,6 @@
                 </div>
             </div>
 
-            <!-- TILE 5: SKILLS -->
             <div class="tile-card">
                 <div class="tile-header" onclick="toggleTile(this)">
                     <span class="tile-title">Skills</span>
@@ -769,7 +796,6 @@
                 </div>
             </div>
 
-            <!-- TILE 6: ORGANIZATIONS & LEADERSHIP -->
             <div class="tile-card">
                 <div class="tile-header" onclick="toggleTile(this)">
                     <span class="tile-title">Organizations & Leadership</span>
@@ -807,7 +833,6 @@
                 </div>
             </div>
 
-            <!-- TILE 7: PERSONAL DETAILS & INTERESTS -->
             <div class="tile-card">
                 <div class="tile-header" onclick="toggleTile(this)">
                     <span class="tile-title">Personal Details & Interests</span>
@@ -834,10 +859,26 @@
                 </div>
             </div>
 
+            <div class="tile-card">
+                <div class="tile-header" onclick="toggleTile(this)">
+                    <span class="tile-title">Writings</span>
+                    <span class="tile-chevron">›</span>
+                </div>
+                <div class="tile-body">
+                    <div class="tile-inner">
+                        <p class="bio-text" style="margin-bottom: 1rem;">
+                            Explore a collection of written works, research, and publications.
+                        </p>
+                        <a href="Library.html" class="library-btn">
+                            <i class="fa-solid fa-book-bookmark"></i> Visit Library
+                        </a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 
-    <!-- LIGHTBOX MODAL -->
     <div id="imgModal" class="modal" onclick="closeModal()">
         <span class="modal-close">&times;</span>
         <img class="modal-content" id="modalImg">
@@ -874,3 +915,4 @@
 
 </body>
 </html>
+
